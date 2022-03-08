@@ -1,0 +1,65 @@
+@import "src/style/variables";
+
+.filter-box {
+  border: 1px solid $color-primary;
+  padding: 8px;
+  box-sizing: border-box;
+  //width: 200px;
+  height: 64px;
+  cursor: pointer;
+  transition: border 0.3s;
+  font-weight: 400;
+  position: relative;
+
+  &__name {
+    font-weight: 500;
+  }
+
+  &:hover, &:focus {
+    border-width: 2px;
+  }
+
+  &--open {
+    border-width: 2px;
+    border-bottom: none;
+  }
+
+  &--active {
+    border-width: 2px;
+
+    .filter-box {
+      &__name {
+        font-weight: 600;
+      }
+
+      &__right {
+        .icon-chevron {
+          stroke-width: 2.5;
+        }
+      }
+    }
+  }
+
+  &__left {
+    width: calc(100% - 36px);
+  }
+
+  &__right {
+    width: 36px;
+    height: 36px;
+
+    .icon-chevron {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__counter {
+    margin-left: 8px;
+    background-color: $color-primary;
+    color: $color-element;
+    padding: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+}

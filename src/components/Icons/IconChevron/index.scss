@@ -1,0 +1,21 @@
+@import "src/style/variables";
+
+.icon-chevron {
+  line-height: 0;
+
+  [stroke] {
+    stroke: $color-primary;
+  }
+
+  &__chevron {
+    transform-origin: center 16.5px;
+
+    &--direction-up {
+      transform: rotate(0deg);
+    }
+
+    &--direction-down {
+      transform: rotate(180deg);
+    }
+  }
+}

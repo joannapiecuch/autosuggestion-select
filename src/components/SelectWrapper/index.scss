@@ -1,0 +1,32 @@
+@import "src/style/variables";
+
+.select-wrapper {
+  position: relative;
+  width: 50%;
+
+  &__dropdown {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid $color-primary;
+    border-top: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 64px; // height of filter box
+    transition: opacity 0.3s;
+
+    &:before {
+      content: "";
+      border-bottom: 2px solid $color-primary;
+      width: 36px;
+      right: 0;
+      top: 0;
+      position: absolute;
+    }
+
+    &--open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

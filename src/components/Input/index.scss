@@ -1,0 +1,26 @@
+@import "src/style/variables";
+
+.input {
+  width: 100%;
+
+  &__field {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 16px;
+    padding: 16px;
+    background: $color-element;
+    color: $color-primary;
+    border: 1px solid  $color-primary;
+    outline: 0;
+    box-shadow: none;
+    width: 100%;
+    box-sizing: border-box;
+    height: 56px;
+    transition: border 0.3s;
+
+    &:hover, &:focus {
+      border-width: 2px;
+    }
+  }
+}
