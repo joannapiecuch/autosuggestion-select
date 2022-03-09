@@ -1,3 +1,5 @@
+import { useUniversityData } from '../../hooks/use-university-data';
+import { List } from '../AutosuggestionSelect/components';
 import { FilterBox } from '../FilterBox';
 import './index.scss';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -7,6 +9,8 @@ import classNames from 'classnames';
 export const SelectWrapper = () => {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
+  const [searchName, setSearchName] = useState('');
+  const { universitiesData } = useUniversityData(searchName);
   const counter = 0;
 
   useEffect(() => {
@@ -22,17 +26,19 @@ export const SelectWrapper = () => {
 
   const toggleSelect = useCallback(() => setOpen(!open), [open]);
 
-  const onChange = useCallback((event) => console.log(event.target.value), []);
+  const onChange = useCallback((event) => {
+    setSearchName(event.target.value);
+  }, []);
 
   return (
     <div ref={ref} className="d-flex flex-column justify--center select-wrapper">
       <FilterBox name="Universities" counter={counter} setOpen={toggleSelect} open={open} />
       <div className={classNames('select-wrapper__dropdown', { 'select-wrapper__dropdown--open': open })}>
-        <SearchInput placeholder="Search university" onChange={onChange} />
-        <ul className="select-wrapper__list">
-          <li>Result</li>
-        </ul>
-        <button className="button button--primary">Reset</button>
+        <div className="select-wrapper__dropdown-menu">
+          <SearchInput placeholder="Search university" onChange={onChange} />
+          <List data={universitiesData} />
+        </div>
+        {counter > 0 && <button className="button button--primary">Reset</button>}
       </div>
     </div>
   );

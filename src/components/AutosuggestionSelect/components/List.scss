@@ -1,0 +1,42 @@
+@import "src/style/variables";
+.list {
+  margin-top: 20px;
+}
+
+.element {
+  padding: 16px 0;
+  font-size: 16px;
+  color: $color-secondary;
+  position: relative;
+  line-height: 1.5;
+
+
+  &::before {
+    content: "";
+    width: 100%;
+    background-color: $color-divider;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+  }
+
+  &::after {
+    content: "";
+    right: 0;
+    border-bottom: 2px solid;
+    border-left: 2px solid #1a1a1a;
+    border-radius: 0 0 0 3px;
+    height: 8px;
+    opacity: 0;
+    transform: rotate(-50deg);
+    width: 16px;
+    transition: opacity $transitionTime;
+  }
+
+  &--checked {
+    &::after {
+      opacity: 1;
+    }
+  }
+}

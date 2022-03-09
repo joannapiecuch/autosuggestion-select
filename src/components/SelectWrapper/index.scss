@@ -2,21 +2,23 @@
 
 .select-wrapper {
   position: relative;
-  width: 50%;
 
   &__dropdown {
-    width: 100%;
-    padding: 16px;
     border: 2px solid $color-primary;
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    top: 62px;
-    transition: opacity 0.3s;
+    top: 65px;
+    transition: opacity $transitionTime;
+    margin: -1px;
 
     &--open {
       opacity: 1;
       visibility: visible;
+    }
+
+    &-menu {
+      padding: 16px;
     }
   }
 }

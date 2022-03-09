@@ -20,6 +20,9 @@ export const FilterBox = ({ name, counter, open, setOpen, children }) => (
     </div>
     {children}
   </button>
+  // <div className="jobs">
+  // <button className="item">Item</button>
+  // </div>
 );
 
 FilterBox.propTypes = {

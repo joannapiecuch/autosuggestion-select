@@ -17,7 +17,7 @@
     width: 100%;
     box-sizing: border-box;
     height: 56px;
-    transition: border 0.3s;
+    transition: border $transitionTime;
 
     &:hover, &:focus {
       border-width: 2px;
