@@ -7,7 +7,7 @@ import classNames from 'classnames';
 export const FilterBox = ({ name, counter, open, setOpen, children }) => (
   <button
     onClick={setOpen}
-    className={classNames('filter-box d-flex align--center', {
+    className={classNames('filter-box button d-flex align--center', {
       'filter-box--active': counter > 0,
       'filter-box--open': open
     })}>
