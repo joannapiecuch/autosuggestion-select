@@ -11,9 +11,20 @@ body {
 
 h3 {
   color: $color-primary;
+  margin: 0;
 }
 
 ul {
   padding: 0;
   margin: 0;
+}
+
+.error-message {
+  display: inline-block;
+  color: $color-error;
+  margin-top: 8px;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
 }

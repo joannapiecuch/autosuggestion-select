@@ -1,33 +1,33 @@
 import { useCallback, useRef, useState } from 'react';
-import { useClickOutside, useKeyboardDown, useUniversityData } from '../../hooks';
+import { useClickOutside, useKeyboardDown } from '../../hooks';
 import './AutosuggestionSelect.scss';
 import { Dropdown, FilterBox } from './components';
+import { useUniversityData } from './hooks';
 
-export const AutosuggestionSelect = () => {
+export const AutosuggestionSelect = ({ onChange }) => {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
-  const [searchName, setSearchName] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [counter, setCounter] = useState(0);
-  const { universitiesData, clearResults } = useUniversityData(searchName);
+  const { universitiesData, clearResults, error } = useUniversityData(searchText);
 
   const closeDropdown = useCallback(() => {
-    setSearchName('');
+    setSearchText('');
     clearResults();
     setOpen(false);
-  }, [setSearchName, setOpen, clearResults]);
+  }, [setSearchText, setOpen, clearResults]);
 
   useClickOutside(ref, closeDropdown);
   useKeyboardDown('Escape', closeDropdown);
 
   const toggleSelect = useCallback(() => setOpen(!open), [open, setOpen]);
-
-  const onReset = useCallback(() => console.log('RESET'), []);
-
-  const onChange = useCallback(
-    (event) => {
-      setSearchName(event.target.value);
+  const onSearchInputChange = useCallback((event) => setSearchText(event.target.value), [setSearchText]);
+  const handleChange = useCallback(
+    (value) => {
+      onChange(value);
+      setCounter(value.length);
     },
-    [setSearchName]
+    [onChange]
   );
 
   return (
@@ -36,10 +36,11 @@ export const AutosuggestionSelect = () => {
       <Dropdown
         universitiesData={universitiesData}
         open={open}
-        onChange={onChange}
-        searchName={searchName}
-        onReset={onReset}
-        setCounter={setCounter}
+        onClose={closeDropdown}
+        onSearchChange={onSearchInputChange}
+        searchName={searchText}
+        onChange={handleChange}
+        error={error}
       />
     </div>
   );

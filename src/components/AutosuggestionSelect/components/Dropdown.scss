@@ -1,11 +1,11 @@
-@import "src/style/variables";
+@import 'src/style/variables';
 
 .dropdown {
   border: 2px solid $color-primary;
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 65px;
+  top: 60px;
   transition: opacity $transitionTime;
   margin: -1px;
   background-color: $color-white;
@@ -18,5 +18,74 @@
 
   &__search {
     padding: 16px;
+  }
+
+  &__header {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dropdown {
+    &--mobile {
+      height: 100vh;
+      background-color: $color-white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 2;
+      animation: fadeOutBottom 0.5s both;
+
+    }
+
+    &--open {
+      animation: fadeInBottom 0.5s both;
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px solid $color-divider;
+
+      &-name {
+        margin-left: 16px;
+        font-weight: bold;
+      }
+
+      &-icon {
+        width: 40px;
+        height: 40px;
+        border-right: 1px solid $color-divider;
+        padding: 0;
+
+        svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutBottom {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }

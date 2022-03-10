@@ -3,7 +3,6 @@
 }
 
 .align {
-
   &--center {
     align-items: center;
   }
@@ -12,8 +11,8 @@
     align-items: flex-start;
   }
 }
-.justify {
 
+.justify {
   &--center {
     justify-content: center;
   }

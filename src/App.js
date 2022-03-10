@@ -1,10 +1,13 @@
+import { useCallback } from 'react';
 import './App.scss';
 import { AutosuggestionSelect } from './components';
 
 const App = () => {
+  const onChange = useCallback((value) => console.log(value), []);
+
   return (
     <div className='app d-flex justify--center align--start'>
-      <AutosuggestionSelect />
+      <AutosuggestionSelect onChange={onChange} />
     </div>
   );
 };

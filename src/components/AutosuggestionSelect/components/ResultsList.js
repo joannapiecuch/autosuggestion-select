@@ -2,17 +2,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { InputCheckbox } from '../../InputCheckbox';
 import './ResultsList.scss';
 
-export const ResultsList = ({ data, setCounter }) => {
+export const ResultsList = ({ data, onChange }) => {
   const [selectedUniversities, setSelectedUniversities] = useState([]);
 
   useEffect(() => {
-    // todo: handle counter
-    setCounter(selectedUniversities.length);
-  }, [selectedUniversities, setCounter]);
+    onChange(selectedUniversities);
+  }, [selectedUniversities, onChange]);
 
-  const onChange = useCallback(
+  const handleChange = useCallback(
     (event) => {
-      // todo: handle toggle checked
       const { checked, value } = event.target;
       if (checked && !selectedUniversities.includes(value)) {
         setSelectedUniversities((values) => [...values, value]);
@@ -26,19 +24,34 @@ export const ResultsList = ({ data, setCounter }) => {
     [selectedUniversities, setSelectedUniversities]
   );
 
-  if (!data || data.length === 0) return null;
+  const onReset = useCallback(() => {
+    setSelectedUniversities([]);
+  }, [setSelectedUniversities]);
 
   return (
-    <ul className='results-list d-flex flex-column'>
-      {data.map((el, index) => (
-        <InputCheckbox
-          key={index}
-          onChange={onChange}
-          checked={selectedUniversities.includes(el.name)}
-          label={el.name}
-          id={el.name}
-        />
-      ))}
-    </ul>
+    <>
+      <ul className='results-list d-flex flex-column'>
+        {selectedUniversities.map((name, index) => (
+          <InputCheckbox key={index} onChange={handleChange} checked={true} label={name} id={name} />
+        ))}
+        {data
+          .filter((el) => !selectedUniversities.includes(el.name))
+          .map((el, index) => (
+            <InputCheckbox
+              key={index}
+              onChange={handleChange}
+              checked={selectedUniversities.includes(el.name)}
+              label={el.name}
+              id={el.name}
+            />
+          ))}
+      </ul>
+      <button
+        className='button button--primary results-list__button'
+        disabled={!selectedUniversities.length}
+        onClick={onReset}>
+        Reset
+      </button>
+    </>
   );
 };
