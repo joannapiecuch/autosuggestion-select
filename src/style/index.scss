@@ -1,3 +1,19 @@
-@import 'main';
-@import "button";
+@import "variables";
 @import "flex";
+@import "button";
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background-color: $color-background;
+  color: $color-primary;
+}
+
+h3 {
+  color: $color-primary;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}

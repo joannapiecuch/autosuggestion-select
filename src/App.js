@@ -3,7 +3,7 @@ import { AutosuggestionSelect } from './components';
 
 const App = () => {
   return (
-    <div className="app d-flex justify--center align--start">
+    <div className='app d-flex justify--center align--start'>
       <AutosuggestionSelect />
     </div>
   );

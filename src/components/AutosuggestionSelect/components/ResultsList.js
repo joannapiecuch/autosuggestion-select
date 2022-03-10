@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import './ResultsList.scss';
 import { InputCheckbox } from '../../InputCheckbox';
+import './ResultsList.scss';
 
 export const ResultsList = ({ data, setCounter }) => {
   const [selectedUniversities, setSelectedUniversities] = useState([]);
@@ -29,7 +29,7 @@ export const ResultsList = ({ data, setCounter }) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <ul className="results-list d-flex flex-column">
+    <ul className='results-list d-flex flex-column'>
       {data.map((el, index) => (
         <InputCheckbox
           key={index}
