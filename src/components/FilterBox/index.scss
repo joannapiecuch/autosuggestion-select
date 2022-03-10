@@ -2,15 +2,21 @@
 
 .filter-box {
   border: 1px solid $color-primary;
-  background-color: $color-background;
+  background-color: $color-element;
   padding: 8px;
   box-sizing: border-box;
   width: max-content;
   cursor: pointer;
   font-weight: 400;
   position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4px;
+  align-items: center;
+  grid-template-areas: 'name counter icon';
 
   &__name {
+    grid-area: name;
     font-weight: 500;
   }
 
@@ -28,7 +34,7 @@
 
     .filter-box {
       &__name {
-        font-weight: 600;
+        text-shadow: 0 0 1px $color-primary;
       }
 
       &__right {
@@ -39,11 +45,8 @@
     }
   }
 
-  &__left {
-    width: calc(100% - 36px);
-  }
-
-  &__right {
+  &__icon {
+    grid-area: icon;
     width: 36px;
     height: 36px;
 
@@ -54,11 +57,13 @@
   }
 
   &__counter {
-    margin-left: 8px;
+    grid-area: counter;
+    justify-self: center;
     background-color: $color-primary;
     color: $color-element;
     padding: 4px;
     box-sizing: border-box;
     font-size: 14px;
+    width: 20px;
   }
 }

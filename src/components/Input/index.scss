@@ -16,10 +16,10 @@
     box-shadow: none;
     width: 100%;
     box-sizing: border-box;
-    height: 56px;
-    transition: border $transitionTime;
+    transition: all $transitionTime;
 
     &:hover, &:focus {
+      margin: -1px;
       border-width: 2px;
     }
   }

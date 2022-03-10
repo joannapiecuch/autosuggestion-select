@@ -1,4 +1,6 @@
 export * from './Input';
 export * from './Icons';
 export * from './FilterBox';
-export * from './SelectWrapper';
+export * from './AutosuggestionSelect';
+export * from './SearchInput';
+export * from './InputCheckbox';

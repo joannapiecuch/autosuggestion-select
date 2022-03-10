@@ -4,18 +4,24 @@ import { environment } from '../environment';
 export const useUniversityData = (searchName) => {
   const [universitiesData, setUniversitiesData] = useState([]);
 
-  const getUniversities = useCallback(async (name) => {
-    const result = await fetch(`${environment.PUBLIC_URL}/search?name=${name}`);
-    const data = await result.json();
-    setUniversitiesData(data);
-  }, []);
+  const getUniversities = useCallback(
+    async (name) => {
+      const result = await fetch(`${environment.PUBLIC_URL}/search?name=${name}`);
+      const data = await result.json();
+      setUniversitiesData(data);
+    },
+    [setUniversitiesData]
+  );
 
   useEffect(() => {
-    console.log(searchName);
     if (searchName) {
       getUniversities(searchName);
     }
-  }, [searchName]);
+  }, [searchName, getUniversities]);
 
-  return { universitiesData };
+  const clearResults = useCallback(() => {
+    setUniversitiesData([]);
+  }, [setUniversitiesData]);
+
+  return { universitiesData, clearResults };
 };

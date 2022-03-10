@@ -1,15 +1,15 @@
 @import "src/style/variables";
-.list {
-  margin-top: 20px;
-}
 
-.element {
+.input-checkbox {
   padding: 16px 0;
   font-size: 16px;
   color: $color-secondary;
   position: relative;
   line-height: 1.5;
 
+  &__label {
+    max-width: 80%;
+  }
 
   &::before {
     content: "";
@@ -32,6 +32,7 @@
     transform: rotate(-50deg);
     width: 16px;
     transition: opacity $transitionTime;
+
   }
 
   &--checked {
@@ -40,3 +41,4 @@
     }
   }
 }
+

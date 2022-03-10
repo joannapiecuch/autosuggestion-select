@@ -1,0 +1,22 @@
+@import "src/style/variables";
+
+.dropdown {
+  border: 2px solid $color-primary;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 65px;
+  transition: opacity $transitionTime;
+  margin: -1px;
+  background-color: $color-element;
+  width: 312px;
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__search {
+    padding: 16px;
+  }
+}

@@ -3,11 +3,17 @@
 }
 
 .align {
+
   &--center {
     align-items: center;
   }
+
+  &--start {
+    align-items: flex-start;
+  }
 }
 .justify {
+
   &--center {
     justify-content: center;
   }
