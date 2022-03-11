@@ -3,20 +3,18 @@ import { InputCheckbox } from './InputCheckbox';
 
 describe('InputCheckbox', () => {
   test('Sets check value correctly', () => {
-    const component = render(<InputCheckbox checked={false} onChange={() => {}} label='Test' id='test' />);
-    const checkbox = component.container.querySelector('input');
-
-    expect(checkbox).not.toBeChecked();
+    const { getByTestId } = render(<InputCheckbox checked={false} onChange={() => {}} label='Test' id='test' />);
+    expect(getByTestId('input-checkbox')).not.toBeChecked();
   });
 
   test('Changes value correctly', () => {
     const onChange = jest.fn();
-    const component = render(<InputCheckbox checked={false} onChange={onChange} label='Test' id='test' />);
-    const label = component.container.querySelector('label');
-    const checkbox = component.container.querySelector('input');
-    fireEvent.click(label);
+    const { getByTestId, rerender } = render(
+      <InputCheckbox checked={false} onChange={onChange} label='Test' id='test' />
+    );
+    fireEvent.click(getByTestId('input-checkbox-label'));
     expect(onChange).toHaveBeenCalled();
-    component.rerender(<InputCheckbox checked={true} onChange={onChange} label='Test' id='test' />);
-    expect(checkbox).toBeChecked();
+    rerender(<InputCheckbox checked={true} onChange={onChange} label='Test' id='test' />);
+    expect(getByTestId('input-checkbox')).toBeChecked();
   });
 });

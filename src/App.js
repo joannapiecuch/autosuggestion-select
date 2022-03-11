@@ -3,7 +3,7 @@ import './App.scss';
 import { AutosuggestionSelect } from './components';
 
 const App = () => {
-  const onChange = useCallback((value) => console.log(value), []);
+  const onChange = useCallback((value) => console.log('Selected values', value), []);
 
   return (
     <div className='app d-flex justify--center align--start'>

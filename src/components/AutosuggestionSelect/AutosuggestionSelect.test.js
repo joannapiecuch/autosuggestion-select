@@ -1,25 +1,38 @@
-import { fireEvent, render } from '@testing-library/react';
-import { FilterBox } from './components';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { AutosuggestionSelect } from './index';
 
-describe('AutosuggestionSelect', () => {
-  test('Sets search name value correctly', () => {
-    const setSearchName = jest.fn();
-    const { container } = render(<AutosuggestionSelect />);
-    const input = container.querySelector('input');
+const mockData = [{ name: 'Foo' }];
 
-    fireEvent.change(input, { value: 'bar' });
-    expect(setSearchName).toHaveBeenCalled();
+jest.mock('./hooks/use-university-data', () => ({
+  useUniversityData(searchText) {
+    const universitiesData = mockData.filter(({ name }) => name.toLowerCase().includes(searchText.toLowerCase()));
+    return { universitiesData, clearResults: jest.fn(), error: undefined };
+  }
+}));
+
+describe('AutosuggestionSelect', () => {
+  test('Calls onChange', () => {
+    const onChange = jest.fn();
+    const { container, getByTestId } = render(<AutosuggestionSelect onChange={onChange} />);
+
+    fireEvent.change(getByTestId('input-field'), { target: { value: 'foo' } });
+
+    const checkbox = container.querySelector('#Foo');
+    fireEvent.click(checkbox);
+
+    expect(onChange).toHaveBeenCalledWith(['Foo']);
   });
 
-  test('Opens dropdown', () => {
-    const setOpen = jest.fn();
-    const { container, rerender } = render(<FilterBox name='Foo' open={false} setOpen={setOpen} counter={0} />);
-    const element = container.querySelector('.filter-box');
-    element.click();
-    expect(setOpen).toHaveBeenCalled();
-    rerender(<FilterBox name='Foo' open={true} setOpen={setOpen} counter={0} />);
-    const elementOpen = container.querySelector('.filter-box--open');
-    expect(elementOpen).toBeTruthy();
+  test('Shows counter', () => {
+    const onChange = jest.fn();
+    const { container, getByText, getByTestId } = render(<AutosuggestionSelect onChange={onChange} />);
+
+    fireEvent.change(getByTestId('input-field'), { target: { value: 'foo' } });
+
+    const checkbox = container.querySelector('#Foo');
+    fireEvent.click(checkbox);
+
+    const counter = getByText('1');
+    expect(counter).toBeTruthy();
   });
 });

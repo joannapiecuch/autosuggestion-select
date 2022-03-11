@@ -17,16 +17,21 @@ const createDocumentListenersMock = () => {
 };
 
 describe('UseClickOutside', () => {
-  test('', () => {
-    const button1 = { current: document.createElement('button') };
-    const button2 = { current: document.createElement('button') };
+  test('Should be call onClick()', () => {
     const fireEvent = createDocumentListenersMock();
     const onClickOutside = jest.fn();
-    renderHook(() => useClickOutside(button1, onClickOutside));
+    const element = { current: document.createElement('button') };
+    renderHook(() => useClickOutside(element, onClickOutside));
+    fireEvent.mouseDown(document.body);
+    expect(onClickOutside).toHaveBeenCalledTimes(1);
+  });
 
-    fireEvent.mouseDown(button1.current);
+  test('Should not call onClick() when clicking inside', () => {
+    const onClickOutside = jest.fn();
+    renderHook(() => useClickOutside(element, onClickOutside));
+    const fireEvent = createDocumentListenersMock();
+    const element = { current: document.createElement('button') };
+    fireEvent.mouseDown(element);
     expect(onClickOutside).not.toHaveBeenCalled();
-    fireEvent.mouseDown(button2.current);
-    expect(onClickOutside).toHaveBeenCalled();
   });
 });

@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useClickOutside, useKeyboardDown } from '../../hooks';
 import './AutosuggestionSelect.scss';
 import { Dropdown, FilterBox } from './components';
@@ -44,4 +45,8 @@ export const AutosuggestionSelect = ({ onChange }) => {
       />
     </div>
   );
+};
+
+AutosuggestionSelect.propTypes = {
+  onChange: PropTypes.func.isRequired
 };

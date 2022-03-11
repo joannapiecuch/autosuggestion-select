@@ -6,6 +6,7 @@ import './FilterBox.scss';
 
 export const FilterBox = ({ name, counter, open, setOpen, children }) => (
   <button
+    data-testid='filter-button'
     onClick={setOpen}
     className={classNames('filter-box', {
       'filter-box--active': counter > 0,
@@ -21,9 +22,9 @@ export const FilterBox = ({ name, counter, open, setOpen, children }) => (
 );
 
 FilterBox.propTypes = {
-  name: PropTypes.string,
-  counter: PropTypes.number,
-  setOpen: PropTypes.func,
-  open: PropTypes.bool,
-  children: PropTypes.any
+  name: PropTypes.string.isRequired,
+  counter: PropTypes.number.isRequired,
+  setOpen: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  children: PropTypes.object
 };

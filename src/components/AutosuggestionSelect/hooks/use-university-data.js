@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { environment } from '../../../environment';
 
-export const useUniversityData = (searchName) => {
+export const useUniversityData = (searchText) => {
   const [universitiesData, setUniversitiesData] = useState([]);
   const [error, setError] = useState();
 
@@ -27,12 +27,12 @@ export const useUniversityData = (searchName) => {
   }, [setUniversitiesData]);
 
   useEffect(() => {
-    if (searchName) {
-      getUniversitiesDebounce(searchName);
+    if (searchText) {
+      getUniversitiesDebounce(searchText);
     } else {
       clearResults();
     }
-  }, [searchName, getUniversities, clearResults]);
+  }, [searchText, getUniversities, clearResults]);
 
   return { universitiesData, clearResults, error };
 };
