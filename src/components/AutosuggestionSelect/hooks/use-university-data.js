@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { config } from '../../../config';
 
@@ -21,7 +21,7 @@ export const useUniversityData = (searchText) => {
     [setUniversitiesData, setError]
   );
 
-  const getUniversitiesDebounce = useCallback(debounce(getUniversities, 300), [getUniversities]);
+  const getUniversitiesDebounce = useMemo(() => debounce(getUniversities, 300), [getUniversities]);
 
   const clearResults = useCallback(() => {
     setUniversitiesData([]);
@@ -33,7 +33,7 @@ export const useUniversityData = (searchText) => {
     } else {
       clearResults();
     }
-  }, [searchText, getUniversities, clearResults]);
+  }, [searchText, clearResults, getUniversitiesDebounce]);
 
   return { universitiesData, clearResults, error };
 };
