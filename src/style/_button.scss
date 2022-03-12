@@ -7,11 +7,7 @@ button {
   box-shadow: none;
   background-color: transparent;
 
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }
@@ -21,7 +17,6 @@ button {
   padding: 18px 16px;
   width: 100%;
   font-size: 16px;
-
 
   &[disabled] {
     background-color: $color-divider;

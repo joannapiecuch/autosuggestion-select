@@ -25,7 +25,7 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .dropdown {
     &--mobile {
       height: 100vh;
@@ -37,7 +37,6 @@
       width: 100%;
       z-index: 2;
       animation: fadeOutBottom 0.5s both;
-
     }
 
     &--open {

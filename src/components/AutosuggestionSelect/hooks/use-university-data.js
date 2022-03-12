@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
-import { environment } from '../../../environment';
+import { config } from '../../../config';
 
+const searchParams = 'search?name=';
 export const useUniversityData = (searchText) => {
   const [universitiesData, setUniversitiesData] = useState([]);
   const [error, setError] = useState();
@@ -9,7 +10,7 @@ export const useUniversityData = (searchText) => {
   const getUniversities = useCallback(
     async (name) => {
       try {
-        const result = await fetch(`${environment.PUBLIC_URL}/search?name=${name}`);
+        const result = await fetch(`${config.PUBLIC_URL}/${searchParams}${name}`);
         const data = await result.json();
         setUniversitiesData(data);
         setError(null);

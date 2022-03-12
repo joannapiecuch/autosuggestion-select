@@ -3,63 +3,20 @@ import { Dropdown } from './Dropdown';
 
 describe('Dropdown', () => {
   test('Dropdown should be visible', () => {
-    const onClose = jest.fn();
-    const onSearchChange = jest.fn();
+    const setOpen = jest.fn();
     const onChange = jest.fn();
-    const { container } = render(
-      <Dropdown
-        onSearchChange={onSearchChange}
-        searchName='foo'
-        universitiesData={[]}
-        onClose={onClose}
-        open={true}
-        onChange={onChange}
-        error={null}
-      />
-    );
+    const { container } = render(<Dropdown setOpen={setOpen} open={true} onChange={onChange} />);
 
     expect(container).toBeVisible();
   });
 
-  test('Dropdown shouldnt be visible', async () => {
-    const onClose = jest.fn();
-    const onSearchChange = jest.fn();
+  test('Calls setOpen on close', () => {
+    const setOpen = jest.fn();
     const onChange = jest.fn();
-
-    // todo
-    const { container } = render(
-      <Dropdown
-        onSearchChange={onSearchChange}
-        searchName='foo'
-        universitiesData={[]}
-        onClose={onClose}
-        open={false}
-        onChange={onChange}
-        error={null}
-      />
-    );
-
-    // expect(container).not.toBeVisible();
-  });
-
-  test('Call onClose', () => {
-    const onClose = jest.fn();
-    const onSearchChange = jest.fn();
-    const onChange = jest.fn();
-    const { getByTestId } = render(
-      <Dropdown
-        onSearchChange={onSearchChange}
-        searchName='foo'
-        universitiesData={[]}
-        onClose={onClose}
-        open={true}
-        onChange={onChange}
-        error={null}
-      />
-    );
+    const { getByTestId } = render(<Dropdown setOpen={setOpen} open={true} onChange={onChange} />);
 
     const buttonClose = getByTestId('dropdown-close-button');
     fireEvent.click(buttonClose);
-    expect(onClose).toHaveBeenCalled();
+    expect(setOpen).toHaveBeenCalledWith(false);
   });
 });

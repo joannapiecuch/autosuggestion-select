@@ -6,6 +6,7 @@
   color: $color-secondary;
   position: relative;
   line-height: 1.5;
+  cursor: pointer;
 
   &__label {
     max-width: 80%;
@@ -36,6 +37,7 @@
   }
 
   &--checked {
+    font-weight: bold;
     &::after {
       opacity: 1;
     }

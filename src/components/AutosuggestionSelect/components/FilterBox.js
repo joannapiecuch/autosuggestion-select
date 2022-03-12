@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { IconChevron } from '../../Icons';
 import './FilterBox.scss';
 
-export const FilterBox = ({ name, counter, open, setOpen, children }) => (
+export const FilterBox = ({ name, counter, open, toggle, children }) => (
   <button
     data-testid='filter-button'
-    onClick={setOpen}
+    onClick={toggle}
     className={classNames('filter-box', {
       'filter-box--active': counter > 0,
       'filter-box--open': open
@@ -24,7 +24,7 @@ export const FilterBox = ({ name, counter, open, setOpen, children }) => (
 FilterBox.propTypes = {
   name: PropTypes.string.isRequired,
   counter: PropTypes.number.isRequired,
-  setOpen: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   children: PropTypes.object
 };

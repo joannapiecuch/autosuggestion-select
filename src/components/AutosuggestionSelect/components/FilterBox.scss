@@ -28,13 +28,12 @@
   &--open {
     z-index: 2;
 
-    @media (min-width: 768px) {
+    @media only screen and (min-width: 769px) {
       border-bottom: transparent;
     }
   }
 
   &--active {
-
     .filter-box {
       &__name {
         text-shadow: 0 0 1px $color-primary;
